@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Trend Prediction</title>
+
+    <style>
+        /* Add some custom styles for the buttons */
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+</head>
+<body>
+
+    <!-- File selection buttons -->
+    <form method="post" action="/">
+        {% for file in files %}
+            <button type="submit" name="file_button" value="{{ file }}">{{ file }}</button>
+        {% endfor %}
+    </form>
+
+    <h1>{{ selected_file }} Stock Trend Prediction Using LSTM</h1>
+    
+    <h2>Evaluation Metrics</h2>
+    <p>Root Mean Squared Error (RMSE): <strong>{{ rmse|round(2) }}</strong></p>
+    <p>Mean Absolute Error (MAE): <strong>{{ mae|round(2) }}</strong></p>
+
+    <h2>Model Prediction Plot</h2>
+    <figure>
+        <img src="data:image/png;base64,{{ plot_image }}" alt="Model Prediction Plot">
+    </figure>
+</body>
+</html>

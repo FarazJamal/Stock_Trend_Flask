@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Trend Prediction</title>
+    <style>
+        /* Add some custom styles for the buttons */
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 5px;
+            font-weight: bold;
+
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Dataset selection buttons -->
+    <form method="post" action="/">
+        {% for dataset, file in files.items() %}
+            <button type="submit" name="dataset_button" value="{{ dataset }}">{{ dataset }}</button>
+        {% endfor %}
+    </form>
+
+    <h1>{{ selected_dataset }} Stock Trend Prediction Using Random Forest</h1>
+
+    {% if model_results %}
+        <h2>Evaluation Metrics</h2>
+        {% for result in model_results %}
+            <p>{{ result[0] }} - RMSE: <strong>{{ result[1]|round(2) }}</strong>, MAE: <strong>{{ result[2]|round(2) }}</strong></p>
+        {% endfor %}
+
+        <!-- Plotting -->
+        <h2>Model Prediction Plot</h2>
+        {% if selected_dataset %}
+            <figure>
+                <img src="data:image/png;base64,{{ plot_image }}" alt="Model Prediction Plot">
+            </figure>
+        {% endif %}
+    {% endif %}
+
+</body>
+</html>
