@@ -15,7 +15,7 @@ all_data = pd.DataFrame()
 for file_name in file_names:
     df = pd.read_csv(file_name)
     
-    # Assuming 'Close' column exists in each CSV file
+    # 70% 'Close' column valus in each CSV file
     data = pd.DataFrame(df['Close'][0:int(len(df)*0.70)])
     
     # Concatenate dataframes
